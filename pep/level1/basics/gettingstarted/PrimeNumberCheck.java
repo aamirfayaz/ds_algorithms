@@ -11,15 +11,15 @@ public class PrimeNumberCheck {
      if(sc.hasNext())
       t = sc.nextInt();
 
-     while(t >= 0) {
+     while(t > 0) {
 
         System.out.println("Enter a number");
         if(sc.hasNext())
          n = sc.nextInt();
         boolean isPrime = true;
 
-        for(int i = 2 ; i <= n / 2; i++) {
-          if(n % i == 0) {
+        for(int div = 2 ; div * div <= n; div++) {
+          if(n % div == 0) {
             isPrime = false;
             break;
         }

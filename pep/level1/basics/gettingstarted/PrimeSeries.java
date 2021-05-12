@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.lang.Math;
 public class PrimeSeries {
   public static void main(String [] args) {
 
@@ -13,20 +13,18 @@ public class PrimeSeries {
     if(s.hasNext())
       high = s.nextInt();
 
-    while(low <= high) {
+    for(int num = low; num <= high; num++){
+        int div = 2;
+        while(div * div <= num){
+            if(num % div == 0){
+                break;
+            }
+            div++;
+        }
 
-      boolean isPrime = true;
-
-      for(int i = 2 ; i <= low / 2; i++) {
-        if(low % i == 0) {
-          isPrime = false;
-          break;
-      }
-    }
-
-    if(isPrime) System.out.println(low);
-
-      low++;
+        if(div * div > num){
+            System.out.println(num);
+        }
     }
   }
 }
