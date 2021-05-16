@@ -20,6 +20,7 @@ public class PrintDigitsOfNumber {
     }
   }
 
+//print left to right
   public static void print(int n) {
     if(n == 0) return;
     else {
