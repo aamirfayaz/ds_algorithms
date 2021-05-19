@@ -22,7 +22,7 @@ public class Pattern8 {
 
   }
 
-  static void solution2(int n) {
+  static void solution1(int n) {
 
     for(int i = 1; i <= n; i++) {
       for(int j = i; j <= n; j++) {
@@ -37,9 +37,9 @@ public class Pattern8 {
 
   }
 
-  void solution1(int n) {
+  static void solution2(int n) {
     for(int i = 1; i <= n; i++) {
-      for(int j = i; j <= n; j++) {
+      for(int j = 1; j <= n; j++) {
         if(i + j == n + 1) {
           System.out.print("*");
         } else {
