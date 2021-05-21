@@ -1,0 +1,1 @@
+Hide project path pane: ctrl + \
