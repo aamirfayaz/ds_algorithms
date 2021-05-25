@@ -14,7 +14,7 @@ int main() {
   cout << "Enter a number :";
   cin >> n;
 
-  for(int i = 0; i <= n; i++) {
+  for(int i = 1; i <= n; i++) {
     for(int j = i; j > 0; j--) {
       cout << "* ";
     }
