@@ -1,6 +1,12 @@
 #include <iostream>
 using namespace std;
-
+/*
+   1
+ 2 3	2
+3	4	5	4	3
+ 2 3	2
+   1
+*/
 int main() {
 
   int n;
@@ -8,37 +14,36 @@ int main() {
   cin >> n;
 
   int sp = n / 2;
-  int base1 = 1;
-  int base2 = 0;
+  int x = 1;
+  int val1 = 1;
+  int val2 = 2;
 
   for(int i = 1; i <= n; i++) {
 
-    for(int j = 1; j <= sp; j ++) {
-      cout << "\t";
-    }
+     for(int j = 1; j <= sp; j++) {
+       cout << "\t";
+     }
+     val2 = val1;
+     for(int j = 1; j <= x; j++) {
+       cout << val2 << "\t";
 
-    int val = base1;
-    for(int j = 1; j <= base1; j++) {
-      cout << val << "\t";
-      val = val + 1;
-    }
-    val = val - 2;
-    for(int j = 1; j <= base2; j++) {
-      cout << val << "\t";
-      val = val - 1;
-    }
+       if(j <= x / 2)
+         val2 += 1;
+      else
+        val2 -= 1;
+     }
 
-    if(i <= n / 2) {
-      sp = sp - 1;
-      base1 = base1 + 1;
-      base2 = base2 + 1;
-    } else {
-      sp = sp + 1;
-      base1 = base1 - 1;
-      base2 = base2 - 1;
-    }
+     if(i <= n / 2) {
+       val1 += 1;
+       sp -= 1;
+       x += 2;
+     } else {
+        val1 -= 1;
+        sp += 1;
+        x  -= 2;
+     }
 
-    cout << "\n";
+     cout << "\n";
 
   }
   return 0;
