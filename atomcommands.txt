@@ -1,1 +1,2 @@
 Hide project path pane: ctrl + \
+How to run cpp program in cmd: https://www.youtube.com/watch?v=IzT9h26xhVk
