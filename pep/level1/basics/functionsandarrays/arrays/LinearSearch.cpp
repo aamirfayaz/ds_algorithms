@@ -14,8 +14,6 @@ int main() {
   int d;
   cin >> d;
 
-
-
   int idx = -1;
 
   for(int i = 0; i < n; i++) {
