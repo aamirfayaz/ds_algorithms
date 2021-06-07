@@ -2,7 +2,7 @@
  using namespace std;
 
 /*
-A subarray is a contiguous part of array.
+A subarray/substring is a contiguous part of array.
 In general, for an array/string of size n,
  there are n*(n+1)/2 non-empty subarrays/substrings.
 */
