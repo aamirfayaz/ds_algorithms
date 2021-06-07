@@ -12,6 +12,10 @@ int main() {
     //The result is 00010010
     printf("b<<1 = %d\n", b<<1);
 
+    cout << "1<<1 : " << (1<<1) << endl; // 1 * 2 pow 1
+    cout << "1<<2 : " << (1<<2) << endl; // 1 * 2 pow 2
+    cout << "1<<3 : " << (1<<3) << endl; // 1 * 2 pow 2
+
 
   return 0;
 }

@@ -8,137 +8,129 @@ left rotation[clockwise]: 3 4 5 1 2
 
 also if k = -1 and n = 5, then k = -1 == k = 4
 
+in below functions, we will be implementing left rotation.
 */
 
-void pep_coding_solution_1(int a [], int n, int k) {
+void reverse(int a[], int start, int end) {
+  int temp = 0;
+    while(start < end) {
+      temp = a[start];
+      a[start] = a[end];
+      a[end] = temp;
+      start++;
+      end--;
+    }
+}
+
+int gcd_calc(int n1, int n2) {
+  if(n2 == 0) return n1;
+  else return gcd_calc(n2, n1 % n2);
+}
+
+
+void gfg_solution_1(int a [], int n, int k) {
 
 /*
-  by using a temp array
- time-complexity:
- space-complexity:
+ by using a temp array
+ time-complexity: O(n)
+ space-complexity: O(k)
 */
   k = k % n;
   if(k < 0) k = n + k;
 
-  int res[n];
+  int temp[k];
 
-  int i = 0, j = n - k;
+  for(int i=0;i<k;i++) {
+    temp[i] = a[i];
+  }
 
-  while(j < n) {
-    res[i] = a[j];
+  int i = 0;
+  while((i+k) < n) {
+    a[i] = a[i+k];
     i++;
+  }
+
+  int j = 0;
+  while(j<k) {
+    a[i] = temp[j];
     j++;
-  }
-
-
-  int x = 0;
-  while(x < (n - k)) {
-    res[i] = a[x];
     i++;
-    x++;
   }
-
 
   for(int i = 0; i < n; i++) {
-    cout << res[i] << "\t";
+    cout << a[i] << "\t";
   }
 }
-void pep_coding_solution_2(int a [], int n, int k) {
+void gfg_solution_2(int a [], int n, int k) {
 
 /*
-  by rotating each element one by one
- time-complexity:
- space-complexity:
+ by rotating each element one by one by using a temp variable.
+ Time complexity : O(n * d)
+ Auxiliary Space : O(1)
 */
   k = k % n;
   if(k < 0) k = n + k;
 
-  int res[n];
-
-  int i = 0, j = n - k;
-
-  while(j < n) {
-    res[i] = a[j];
-    i++;
-    j++;
+  for(int i=0;i<k;i++) {
+    int temp = a[0];
+    int j = 0;
+    while(j<n-1) {
+      a[j] = a[j+1];
+      j++;
+    }
+    a[j] = temp;
   }
-
-
-  int x = 0;
-  while(x < (n - k)) {
-    res[i] = a[x];
-    i++;
-    x++;
-  }
-
 
   for(int i = 0; i < n; i++) {
-    cout << res[i] << "\t";
+    cout << a[i] << "\t";
   }
 }
-void pep_coding_solution_3(int a [], int n, int k) {
+void gfg_solution_3(int a [], int n, int k) {
 
 /*
  using array reversal
- time-complexity:
+ Time complexity : O(n)
+ Auxiliary Space : O(1)
+*/
+  k = k % n;
+  if(k < 0) k = n + k;
+
+  reverse(a, 0, k - 1);
+  reverse(a, k + 1, n - 1);
+  reverse(a, 0, n - 1);
+
+
+
+  for(int i = 0; i < n; i++) {
+    cout << a[i] << "\t";
+  }
+}
+void gfg_solution_4(int a [], int n, int k) {
+/*
+ using juggling algorithm
+ time-complexity: O(n)
  space-complexity: O(1)
 */
   k = k % n;
   if(k < 0) k = n + k;
 
-  int res[n];
-
-  int i = 0, j = n - k;
-
-  while(j < n) {
-    res[i] = a[j];
-    i++;
-    j++;
+  int gcd = gcd_calc(n, k);
+  int d = 0;
+  for(int i=0;i<gcd;i++) {
+    int temp = a[i];
+    int j = i;
+    while(1) {
+      d = j + k;
+      if(d >= n) d = d - n;
+      if(d == i) break;
+      a[j] = a[d];
+      j = d;
+    }
+    a[j] = temp;
   }
-
-
-  int x = 0;
-  while(x < (n - k)) {
-    res[i] = a[x];
-    i++;
-    x++;
-  }
-
 
   for(int i = 0; i < n; i++) {
-    cout << res[i] << "\t";
-  }
-}
-void pep_coding_solution_4(int a [], int n, int k) {
-/*
- using juggling algorithm
- time-complexity:
- space-complexity:
-*/
-  k = k % n;
-  if(k < 0) k = n + k;
-
-  int res[n];
-
-  int i = 0, j = k;
-
-  while(j < n) {
-    res[i] = a[j];
-    i++;
-    j++;
-  }
-
-
-  int x = 0;
-  while(x < k) {
-    res[i] = a[x];
-    i++;
-    x++;
-  }
-
-
-  for(int i = 0; i < n; i++) {
-    cout << res[i] << "\t";
+    cout << a[i] << "\t";
   }
 }
 int main() {
@@ -147,14 +139,14 @@ int main() {
   cin >> n;
 
   int a[n];
-  for(int i = 0; i < n; i++) {
-    cin >> a[i];
+  for(int i=0;i<n;i++) {
+    cin>>a[i];
   }
 
   int k;
-  cin >> k;
- pep_coding_solution_1(a, n, k);
- cout << "\n" << "-------sep------" << "\n";
- pep_coding_solution_2(a, n, k);
-   return 0;
+  cin>>k;
+ gfg_solution_4(a, n, k);
+
+
+ return 0;
 }
