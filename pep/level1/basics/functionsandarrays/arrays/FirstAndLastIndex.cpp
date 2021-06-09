@@ -3,7 +3,7 @@ using namespace std;
 
 int main() {
 
-  int n, coin , ceil = 0, floor = 0;
+  int n, k;
   cin>>n;
   int a[n];
 
@@ -11,7 +11,7 @@ int main() {
     cin>>a[i];
   }
 
-  cin>>coin;
+  cin>>k;
   int low = 0, high = n - 1, mid;
 
   while(low <= high) {
@@ -32,4 +32,4 @@ int main() {
   cout << floor << " " << ceil;
 
   return 0;
-}
+ }
