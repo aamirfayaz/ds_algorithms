@@ -17,15 +17,12 @@ int main() {
   while(low <= high) {
     mid = low + (high - low) / 2;
     if(a[mid] < coin) {
-      floor = a[mid];
-      low = mid + 1;
+       low = mid + 1;
     } else if(a[mid] > coin) {
-      ceil = a[mid];
-      high = mid - 1;
+       high = mid - 1;
     } else {
-      ceil = a[mid];
-      floor = a[mid];
-      break;
+       while()
+       break;
     }
   }
 
