@@ -1,66 +1,65 @@
 #include<iostream>
 using namespace std;
-int main()
-{
-      int a1;
-      cin>>a1;
-      int a2;
-      cin>>a2;
-      int a[a1][a2];
+/*
+Time complexity: O(n3). It can be optimized using Strassen’s Matrix Multiplication
+Auxiliary Space: O(r1 * c2)
+*/
+int main() {
 
-      int b1;
-      cin>>b1;
-      int b2;
-      cin>>b2;
-      int b[b1][b2];
+      int r1;
+      cin>>r1;
+      int c1;
+      cin>>c1;
+      int a[r1][c1];
 
-      int c[a1][a2];
+      int r2;
+      cin>>r2;
+      int c2;
+      cin>>c2;
+      int b[r2][c2];
 
-      int sum;
+      /*
+        a = 2 * 3, b = 3 * 4, c = 2 * 4
+        a = 2 * 3, b = 3 * 1, c = 2 * 1
+      */
+      int c[r1][c2];
 
-      for(int i=0;i<a1;i++) {
-        for(int j=0;j<a2;j++) {
+      if(c1 != r2) {
+        cout << "Invalid input";
+        return 0;
+      }
+
+      for(int i=0;i<r1;i++) {
+        for(int j=0;j<c1;j++) {
             cin>>a[i][j];
         }
       }
 
-      for(int i=0;i<b1;i++) {
-        for(int j=0;j<b2;j++) {
+      for(int i=0;i<r2;i++) {
+        for(int j=0;j<c2;j++) {
             cin>>b[i][j];
         }
       }
 
-       for(int i=0;i<a1;i++) {
-        for(int j=0;j<a2;j++) {
-            cout << a[i][j] << " ";
-        }
-        cout<<endl;
-      }
+    cout << "r1 = " << r1;
+    cout << "c1 = " << c1;
+    cout << "r2 = " << r2;
+    cout << "c2 = " << c2;
+    cout << endl ;
 
-      cout << endl;
-
-      for(int i=0;i<b1;i++) {
-        for(int j=0;j<b2;j++) {
-            cout << b[i][j] << " ";
-        }
-        cout<<endl;
-      }
-
-      cout << endl << "Mult. array" << endl;
-
-      for(int i=0;i<a1;i++) {
-        for(int j=0;j<b1;j++) {
-          sum=0;
-          for(int k=0;k<b2;k++) {
-            sum = sum + (a[i][k] * b[k][j]);
+      for(int i=0;i<r1;i++) {
+        for(int j=0;j<c2;j++) {
+          c[i][j] = 0;
+          for(int k=0;k<c1;k++) {
+            cout << "c[" << i << "]" << "[" << j << "]" <<c[i][j] << endl;
+            c[i][j] = c[i][j] + (a[i][k] * b[k][j]);
           }
-          c[i][j] = sum;
         }
       }
 
 
-      for(int i=0;i<a1;i++) {
-        for(int j=0;j<a2;j++) {
+      for(int i=0;i<r1;i++) {
+        for(int j=0;j<c2;j++) {
             cout << c[i][j] << " ";
         }
         cout<<endl;
