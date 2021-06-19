@@ -12,21 +12,38 @@ int main() {
 		}
 	}
 
-	for(int i=0;i<r;i++) {
-		cout << a[i][0] << endl;
+	int minr=0;
+	int minc=0;
+	int maxc=c-1;
+	int maxr=r-1;
+	int count=0;
+	int total=r*c;
+
+	while(count<total) {
+		
+		for(int i=minr,j=minc;i<=maxr && count<total;i++) {
+			cout<<a[i][j]<<endl;
+			count++;
+		}
+		minc++;
+		for(int i=minc,j=maxr;i<=maxc && count<total;i++) {
+			cout<<a[j][i]<<endl;
+			count++;
+		}
+		maxr--;
+		for(int i=maxr,j=maxc;i>=minr && count<total;i--) {
+			cout<<a[i][j]<<endl;
+			count++;
+		}
+		maxc--;
+		for(int i=maxc,j=minr;i>=minc && count<total;i--) {
+			cout<<a[j][i]<<endl;
+			count++;
+		}
+		minr++;
 	}
 
-	for(int i=1;i<c;i++) {
-		cout << a[r-1][i]<< endl;
-	}	
-
-	for(int i=r-2;i>=0;i--) {
-		cout << a[i][c-1]<< endl;
-	}
-
-	for(int i=c-2;i>=0+1;i--) {
-		cout << a[0][i]<< endl;
-	}
+	
 
 	return 0;
 }
