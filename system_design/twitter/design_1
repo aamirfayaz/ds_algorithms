@@ -1,0 +1,13 @@
+--> Functional and Non-Functional Requirements that we want this platform to support.
+
+1.) Functional Requirements: a.) Tweet b.) Re-tweet c.) Follow d.) Search
+ Search: for some particular content within all the tweets that have been posted on the twitter.
+ This would be usually to do some trend analysis or to figure out what's happening in the world etc
+
+
+2.) Non Functional: a.) Read heavy b.) Fast Rendering c.) Fast tweet d.) Lag OK in some cases e.) Scale
+
+Scale: As of 18-June-2021
+https://www.internetlivestats.com/twitter-statistics/
+~150 Million DAU, ~350 Million MAU, 1.5 Billion Accounts, 500 Million tweets/day = 5700 tweets/s:12000 @peak
+	

@@ -4,8 +4,7 @@ using namespace std;
 int main() {
 
 	int r, c;
-	cin>>r;
-	cin>>c;
+	cin>>r>>c;
 	int a[r][c];
 	
 	for(int i=0;i<r;i++) {
