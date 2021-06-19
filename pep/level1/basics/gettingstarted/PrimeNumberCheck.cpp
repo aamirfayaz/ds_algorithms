@@ -6,7 +6,7 @@ int main() {
   int n;
   int t = 4;
      while(t > 0) {
-      cin>>n;
+        cin>>n;
         int div = 2;
         while((div*div)<n) {
         if(n%div == 0) {
