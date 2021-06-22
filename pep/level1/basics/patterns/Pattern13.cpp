@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 /*
+https://math.stackexchange.com/questions/4149946/proof-of-binom-nk1-binom-n-k-cdot-fracn-kk1
+(n k+1)=(n k)⋅n−k / k+1
 1
 1	1
 1	2	1
