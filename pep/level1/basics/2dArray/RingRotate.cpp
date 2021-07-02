@@ -12,5 +12,15 @@ int main() {
 			cin>>a[i][j];
 		}
 	}
+	
+	int s,r;
+	cin>>s>>r;
+
+	int minr=0;
+	int minc=0;
+	int maxr=r-1;
+	int maxc=c-1;
+
+	if(s == 1)
 	return 0;
 }
