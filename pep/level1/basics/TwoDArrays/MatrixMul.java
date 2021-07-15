@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class MatrixMul {
     public static void main(String [] args) {
+        
         System.out.println("Matrix Multiplication");
 
         Scanner sc = new Scanner(System.in);
@@ -30,11 +31,27 @@ public class MatrixMul {
             }
         }
 
-        multiply(a1, a2);
+        if(c1 != r2) {
+            System.out.println("Invalid input");
+            return;
+        }
 
-    }
+        int [][] a3 = new int [r1][c2];
 
-    public static void multiply(int [][] a1, int [][] a2) {
-        
+        for(int i=0;i<r1;i++) {
+            for(int j=0;j<c2;j++) {
+                for(int k=0;k<c1;k++) {
+                    a3[i][j] = a3[i][j] + (a1[i][k] * a2[k][j]);
+                }
+            }
+        }
+
+        for(int i=0;i<a3.length;i++) {
+            for(int j=0;j<a3[i].length;j++) {
+                System.out.print(a3[i][j] + "\t");
+            }
+            System.out.println("\n");
+        }
+
     }
 }
