@@ -36,4 +36,5 @@
     --> The Redis expiry mostly doesn't happen on time, not very accurate, so for mission-critical systems it might be an issue.
          
      
---> 
+--> As Order Table gets huge, for Orders Completed as they have been delivered or Cancelled, we can call Archival Services
+--> Order Processing service, which provides APIs for order details, after order has been created, any changes to order will happen through this service.
