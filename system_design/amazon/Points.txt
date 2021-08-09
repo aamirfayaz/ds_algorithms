@@ -1,0 +1,39 @@
+--> Order Service part of Order Management which takes the order.
+--> Order Management sits on top of MySQL database. Lot of update that happen onto the Order database each order. We have to make sure that updates are atomic and can form a 
+    transaction as to make sure there are no partial updates happenning,to maintain ACID property as MySQL provides that out-of-the-box, so we will leverage that here.
+
+--> As soon as we invoke order services, OrderId gets generated and put the entry in  in-memory database(O101, timeofcreation=10:00, expiry=10:20, Created).
+    Also 1 entry in OrderTable (O101, 10:00, Created)
+--> Then we will call the inventory service, the idea of calling inventory service is that we want  to block the inventory, and reduce the inventory count e.g 3 users 
+    and only 1 TV. We want to make sure only 1 of them buys it and for other 2 users it should show that is is out of stock. We can enforce that through the inventory service.
+    We can do that by having a constraint on to the table which has the "count" column saying that "count" cannot be negative.	So, for others it will be something like 
+    Constraint Voilation Exception, as the "count" cannot be negative. So only 1 of the User will go through with the inventory. So once inventory is updated then User
+    is taken to the Payment Service. 	 
+
+--> Interaction with payment Service can lead to several outcomes. One of them is that payment serivce could come back saying that payment was successful, or payment failed
+    due to lot of reasons or the person could just close the brower window after going to the payment gateway and not come back in which case payment service would not
+     give a response. So there are these 3 possibilites.
+     1. if payment response is OK, then we update order table status to PLACED at 10:02 and one event will be sent to kafka that order has been created with so-and-so details.
+     2. if payment fails, first of all we have to cancel the order CANCELLED update the database. We, have to call the inventory service again to increment saying we that
+        decremented the count for this orderid, now let's increment it back. So kind of rollback transaction kind of a thing, that will be done here.
+	
+    Also, we will be having one reconcillation service that sits on top of this whole system that basically checks every once in a while that if there were 10 orders overall,
+    do I have the correct inventory Count at the end, just to handle cases where due to some reason we missed update of inventory count or the write fail. So all of these
+    scenarios can be handled by the Reconcillation flow.
+
+    3. The payment service doesn't respond back to us, as user closes the window. So physically we have the item but database is showing not available. So for this scenario
+       Redis/in-memory database will kick in. We will have some expiry call back on top of Redis/in-memory DS, e.g 10:00 created and 10:05 expiry, so this callback gets called
+       saying this record got expired, now do what you want. We will catch that event in our Order Service and then say that this particular record has expired, We will follow
+       the same flow that was followed for payment cancellation i.e I will timeout the payment and mark it cancelled. So in order table this record inserted with 10:05 CANCELLED 
+       state and inventory would get updated back again.
+    
+     -> Once we will get PaymentSuccess or PaymentFailure Event, we will delete the entry from the Redis so payment expiry event will not get generated.
+     -> If we will expiry event first e.g at 10:05 and PaymentSuccess later at 10:07, at this time we have marked Order as Cancelled and updated inventory again. Here we 
+        could do 2-3 things: Either refund the money to customer saying for whatever reason we were not able to process the money, here is your money back. Alternatively,
+        we can also say that now we have anyways got the money from the customer, we know what user was trying to order, So we can directly created another order and
+        directly put that into order table with status as PLACED.
+
+    --> The Redis expiry mostly doesn't happen on time, not very accurate, so for mission-critical systems it might be an issue.
+         
+     
+--> 
