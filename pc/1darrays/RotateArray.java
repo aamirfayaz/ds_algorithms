@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.io.*;
 
-public class ReverseArray {
+public class RotateArray {
 
   public static void display(int[] a){
     StringBuilder sb = new StringBuilder();
@@ -16,21 +16,28 @@ public class ReverseArray {
     
       while(start < end) {
          
-         int temp = a[li];
-         a[li] = a[ui];
-         a[ui] = temp;
+         int temp = a[start];
+         a[start] = a[end];
+         a[end] = temp;
          start++;
          end--;
       }
 
   }
 
-  public static void rotate(int[] a, int k){
+  public static void rotate(int[] a, int n, int k){
+
+    k = k % n; // if k = -4, n = 5 then k = -1
+    if(k < 0) k = k + n;
     
-     reverse()
+     reverse(a, 0,  n - k - 1);
+     reverse(a, n - k, n - 1);
+     reverse(a, 0, n - 1);
     
 
   }
+
+public static void rotateWithJugglingAlgorithm(){ }
 
 public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -41,9 +48,9 @@ public static void main(String[] args) throws Exception {
        a[i] = Integer.parseInt(br.readLine());
     }    
 
-    int k = Integer.parseInt(br)
+    int k = Integer.parseInt(br.readLine());
 
-    rotate(a);
+    rotate(a, a.length, k);
     display(a);
  }
 
