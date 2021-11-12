@@ -1,7 +1,8 @@
 import java.io.*;
 import java.util.*;
 
-public class KnightsTour {
+//// Warnsdorff's algorithm
+public class ModifiedKnightsTour {
 
     public static int c = 0;
     public static void main(String[] args) throws Exception {
@@ -28,14 +29,14 @@ public class KnightsTour {
         chess[r][c] = upcomingMove;
 
 
-        printKnightsTour(chess, r - 2, c + 1,  upcomingMove + 1);
-        printKnightsTour(chess, r - 1, c + 2 , upcomingMove + 1);
-        printKnightsTour(chess, r + 1, c + 2 , upcomingMove + 1);
-        printKnightsTour(chess, r + 2, c + 1 , upcomingMove + 1);
-        printKnightsTour(chess, r + 2, c - 1 , upcomingMove + 1);
-        printKnightsTour(chess, r + 1, c - 2 , upcomingMove + 1);
-        printKnightsTour(chess, r - 1, c - 2 , upcomingMove + 1);
-        printKnightsTour(chess, r - 2, c - 1 , upcomingMove + 1);
+        printKnightsTour(chess, r - 3, c     , upcomingMove + 1);
+        printKnightsTour(chess, r - 2, c + 2 , upcomingMove + 1);
+        printKnightsTour(chess, r,     c + 2 , upcomingMove + 1);
+        printKnightsTour(chess, r + 2, c + 2 , upcomingMove + 1);
+        printKnightsTour(chess, r + 3, c     , upcomingMove + 1);
+        printKnightsTour(chess, r + 2, c - 2 , upcomingMove + 1);
+        printKnightsTour(chess, r    , c - 2 , upcomingMove + 1);
+        printKnightsTour(chess, r - 2, c - 2 , upcomingMove + 1);
         chess[r][c] = 0;
     }
 
@@ -50,7 +51,6 @@ public class KnightsTour {
         }
 
         System.out.println();
-        System.exit(0);
     }
 }
 
