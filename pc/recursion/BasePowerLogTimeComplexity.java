@@ -9,10 +9,18 @@ public class BasePowerLogTimeComplexity {
 		int power = sc.nextInt();
 
 		int result = calculate(base, power);
+		System.out.println(result);
 
 	}
 
 	public static int calculate(int base, int power) {
-		return 1;
+
+		if(power == 1) return base; 
+		else {
+			int result = calculate(base, power / 2);
+			if(power % 2 == 0) return result * result;
+			else return base * (result * result);
+		}
+
 	}
 }
