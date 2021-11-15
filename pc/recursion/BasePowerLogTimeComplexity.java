@@ -17,9 +17,13 @@ public class BasePowerLogTimeComplexity {
 
 		if(power == 1) return base; 
 		else {
-			int result = calculate(base, power / 2);
-			if(power % 2 == 0) return result * result;
-			else return base * (result * result);
+			int basePower = calculate(base, power / 2);
+			int result = basePower * basePower;
+
+			if(power % 2 != 0) {
+				result = base * result;
+			} 
+			return result;
 		}
 
 	}
