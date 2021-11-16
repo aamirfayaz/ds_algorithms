@@ -6,10 +6,6 @@ public class Factorial {
         Scanner scn = new Scanner(System.in);
         int n = scn.nextInt();
 
-        int nn = 10;
-        System.out.println(9%10);
-        System.out.println(3%10);
-        
         int result = factorial(n);
         System.out.println(result);
  }

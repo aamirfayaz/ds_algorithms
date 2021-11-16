@@ -1,0 +1,19 @@
+ 
+Knights and tours should work for 10 * 10 boards
+--> check with the knights tour first
+--> if it works then check for the modified tour as given in tc interview
+--> check whatever the initial position, we should always get atleast 1 tour
+--> so if things doesn' work out with backtracking, then try with warendoffs algorithm
+
+--> take a look at tc question for reference
+
+[
+
+ there feedback was:
+ -> not enough tests, readme, build file, duh
+ -> most of the initial positions were throwing errors, so they 
+   suggested this is becoz i am using warendoff not backtracking but GFG solution works for all cases 
+   using warendoff algo, but board is 8 *8, i am not able to modify for 10 * 10
+
+
+]
