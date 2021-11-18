@@ -18,7 +18,7 @@ public class AllIndiciesOfOccurance {
 		System.out.println("last index " + result);
 	}
 
-	public static int lastIndex(int a [], int idx, int find) {
+	public static int[] allIndicies(int a [], int idx, int find) {
 		if(idx == a.length) 
 			return -1; 
 		else {
